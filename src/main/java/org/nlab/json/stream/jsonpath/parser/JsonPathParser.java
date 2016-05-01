@@ -62,7 +62,7 @@ public class JsonPathParser extends BaseParser<PathNode> {
     }
 
     public Rule Number() {
-        return Sequence(Digits() , push(new PathArrayIndex(Integer.parseInt(matchOrDefault("0")))));
+        return Sequence(FirstOf(Digits() , '*') , push(new PathArrayIndex(matchOrDefault("0"))));
     }
 
     @SuppressSubnodes

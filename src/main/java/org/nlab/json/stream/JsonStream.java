@@ -43,6 +43,10 @@ public class JsonStream implements Stream<StreamContext> {
         return filter(Predicates.jsonPath(jsonPath));
     }
 
+    public JsonStream field(String key){
+        return filter(Predicates.objects(key));
+    }
+
     @Override
     public JsonStream filter(Predicate<? super StreamContext> predicate) {
         return new JsonStream(delegate.filter(predicate), jsonMatcherStreamReader);

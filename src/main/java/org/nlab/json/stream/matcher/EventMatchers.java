@@ -19,12 +19,12 @@ public final class EventMatchers {
 
     public static EventMatcher objects(String[] keys, CheckedFunction<StreamContext,Boolean> consumer){
         Validate.notEmpty(keys);
-        return new EventMatcher(Predicates.elements(keys), consumer);
+        return new EventMatcher(Predicates.objects(keys), consumer);
     }
 
     public static EventMatcher object(String key, CheckedFunction<StreamContext,Boolean> consumer){
         Validate.notBlank(key);
-        return new EventMatcher(Predicates.elements(key), consumer);
+        return new EventMatcher(Predicates.objects(key), consumer);
     }
 
 

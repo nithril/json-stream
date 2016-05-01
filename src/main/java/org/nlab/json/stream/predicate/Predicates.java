@@ -14,7 +14,7 @@ public final class Predicates {
     private Predicates() {
     }
 
-    public static Predicate<StreamContext> elements(String... elements) {
+    public static Predicate<StreamContext> objects(String... elements) {
         return new ObjectPredicate(elements);
     }
 

@@ -59,7 +59,7 @@ public class EvaluatePath {
 
     public void evaluateArray(StreamContext context, int index, PathArrayNode pathArrayNode) {
         ArrayToken arrayToken = (ArrayToken) context.getElements().get(index);
-        if (arrayToken.getIndex() == pathArrayNode.getIndex().getIndex()) {
+        if (pathArrayNode.getIndex().matchIndex(arrayToken.getIndex())) {
             // match if next node is leaf and next node is an array or an object uninitialized or a literal and there is no next path node
             if (index + 2 == context.getElements().size()
                     && (context.getElements().get(index + 1).isPreInit() ||  context.getElements().get(index + 1).isLiteral())
@@ -78,11 +78,44 @@ public class EvaluatePath {
         if (objectToken.isKeyInit() && objectToken.getKey().equals(pathObjectNode.getName())) {
 
             // match if both node and path reached last and node does not yet has it's value parsed
-            if (index + 1 >= context.getElements().size() && !objectToken.isValueInit() && pathObjectNode.getChild() == null) {
+            // match if both node and path reached last and node has it's value parsed but not initialized in case of object or array
+/*            if (index + 1 >= context.getElements().size() && !objectToken.isValueInit() && pathObjectNode.getChild() == null) {
                 callback.accept(context);
             } else {
                 evaluateNext(context, index + 1, pathObjectNode.getChild());
+            }*/
+
+
+            // match if path reached last and node is prior last and node has it's value parsed but not initialized in case of object or array
+
+            if (pathObjectNode.getChild() == null){
+                if (index + 2 == context.getElements().size()) {
+                    Token nextToken = context.getElements().get(index + 1);
+                    if (nextToken instanceof ObjectToken && nextToken.isPreInit()){
+                        callback.accept(context);
+                    }
+                    if (nextToken instanceof ArrayToken && ((ArrayToken) nextToken).isPreInit()){
+                        callback.accept(context);
+                    }
+                    if (nextToken.isLiteral()){
+                        callback.accept(context);
+                    }
+                }
+            }else{
+                evaluateNext(context, index + 1, pathObjectNode.getChild());
             }
+/*
+
+
+
+            if (index + 1 >= context.getElements().size() && pathObjectNode.getChild() == null) {
+
+                if (objectToken instanceof ObjectToken !objectToken.isValueInit())
+
+                callback.accept(context);
+            } else {
+                evaluateNext(context, index + 1, pathObjectNode.getChild());
+            }*/
 
 
         }

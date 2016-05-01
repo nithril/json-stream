@@ -24,7 +24,7 @@ public class AbstractTest {
     public String[] expectedPaths;
 
     @Test
-    public void name() throws Exception {
+    public void test() throws Exception {
         AtomicInteger counter = new AtomicInteger(0);
 
         JsonStreams.newConsumer(file)

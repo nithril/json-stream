@@ -5,6 +5,9 @@ import java.util.function.Consumer;
 
 import org.nlab.exception.UncheckedExecutionException;
 import org.nlab.json.stream.context.StreamContext;
+import org.nlab.json.stream.context.token.ArrayToken;
+import org.nlab.json.stream.context.token.ObjectToken;
+import org.nlab.json.stream.context.token.Token;
 
 import com.fasterxml.jackson.core.JsonToken;
 
@@ -15,12 +18,25 @@ public class PartialJsonStreamReaderSpliterator implements Spliterator<StreamCon
 
     private final JsonMatcherStreamReader jsonMatcherReader;
     private final int depth;
+    private final Token token;
 
     private boolean eoi = false;
+
+    private String key;
+    private int index;
+
 
     public PartialJsonStreamReaderSpliterator(JsonMatcherStreamReader jsonMatcherReader) {
         this.jsonMatcherReader = jsonMatcherReader;
         this.depth = jsonMatcherReader.getStreamContext().getElements().size();
+        this.token = jsonMatcherReader.getStreamContext().getElements().peek();
+
+        if (this.token instanceof ObjectToken){
+            key = ((ObjectToken) this.token).getKey();
+        }else if (this.token instanceof ArrayToken){
+            index = ((ArrayToken) this.token).getIndex();
+        }
+
     }
 
     @Override
@@ -41,6 +57,17 @@ public class PartialJsonStreamReaderSpliterator implements Spliterator<StreamCon
             action.accept(jsonMatcherReader.getStreamContext());
 
             if (jsonMatcherReader.getStreamContext().getElements().size() == depth){
+
+                if (token instanceof ObjectToken){
+                    if (((ObjectToken) token).getKey().equals(key)){
+                        return true;
+                    }
+                }else if (token instanceof ArrayToken){
+                    if (((ArrayToken) token).getIndex() == index){
+                        return true;
+                    }
+                }
+
                 eoi = true;
                 return false;
             }
