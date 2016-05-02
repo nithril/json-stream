@@ -1,4 +1,4 @@
-package org.nlab;
+package org.nlab.json;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -12,7 +12,7 @@ import org.nlab.json.stream.JsonStreams;
  * Created by nlabrot on 20/03/16.
  */
 @RunWith(Parameterized.class)
-public class AbstractTest {
+public abstract class AbstractTest {
 
     @Parameterized.Parameter(value = 0)
     public String file;

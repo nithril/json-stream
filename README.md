@@ -1,4 +1,4 @@
-Json Streaming JsonPath Matcher
+Json Streaming / JsonPath Matcher
 ==================
 
 Streaming Json is fast but at the cost of lack of context (previous node / attribute...) and matcher. 
@@ -50,8 +50,10 @@ Pseudo java code:
 try(InputStream is = new FileInputStream("foo.json")){
     JsonFactory factory = new JsonFactory();
     JsonParser parser = factory.createParser(is);
+    // Pseudo class to handle a json path 
     JsonPath jsonPath = new JsonPath();
-    while(parser.nextToken() != null){
+    while(parser.nextToken() != null) {
+        jsonPath.manageToken(parser.getCurrentToken());
         if ("$.foo.bar".equals(jsonPath.toString())) {
             //Do something
         }
@@ -116,3 +118,5 @@ a nester consumer extract the title, id, timestamp and contributor name:
 
 Supported JsonPath 
 =========================
+
+TBD

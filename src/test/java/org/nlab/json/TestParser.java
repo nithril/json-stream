@@ -1,4 +1,4 @@
-package org.nlab;
+package org.nlab.json;
 
 import java.util.Arrays;
 
