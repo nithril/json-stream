@@ -1,0 +1,47 @@
+[
+  {
+    "bytes": 6402,
+    "code": "530",
+    "customer_data": [
+      [
+        "message-id",
+        "<2016-06-14T11:27:Z.0154de5a-ff37-a040-0601-07c430ec9600@vbackbone>"
+      ]
+    ],
+    "del_time": "Thu May 26 14:59:39.600 2016",
+    "env_from": "",
+    "error": "5.3.1 Intercepted and rejected by administrative action. PRJCT",
+    "event_type": "bounce",
+    "inj_time": "Thu May 26 14:59:33.055 2016",
+    "ip": "207.46.163.170",
+    "mid": 16650761,
+    "rcpt_data": [
+      {
+        "attempts": 1,
+        "rid": 0,
+        "to": "inboundproxy@contoso.com"
+      }
+    ],
+    "reason": "5.3.0 - Other mail system problem",
+    "source_ip": "172.16.4.77"
+  },
+  {
+    "bytes": 95664,
+    "code": "250",
+    "customer_data": [
+      [
+        "message-id",
+        "<XXXX2016-06-16T11:12:13.145Z.0154de5a-ff37-a040-0601-07c430ec9601@vbackbone>"
+      ]
+    ],
+    "del_time": "Thu May 26 14:59:41.952 2016",
+    "env_from": "eServices@victorbuckservices.com",
+    "event_type": "success",
+    "inj_time": "Thu May 26 14:59:41.435 2016",
+    "ip": "194.154.212.9",
+    "mid": 16650762,
+    "rcpt_data": [],
+    "reply": "ok:  Message 2794269 accepted",
+    "source_ip": "172.16.4.77"
+  }
+]
