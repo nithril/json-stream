@@ -7,7 +7,7 @@
 
     <groupId>com.github.nithril</groupId>
     <artifactId>json-stream</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>Json Streaming</name>
     <description>Json Streaming / JsonPath Matcher</description>
