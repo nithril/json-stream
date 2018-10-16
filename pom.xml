@@ -7,7 +7,7 @@
 
     <groupId>com.github.nithril</groupId>
     <artifactId>json-stream</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Json Streaming</name>
     <description>Json Streaming / JsonPath Matcher</description>
@@ -16,7 +16,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jackson.version>2.7.3</jackson.version>
+        <jackson.version>2.9.7</jackson.version>
     </properties>
 
     <licenses>
